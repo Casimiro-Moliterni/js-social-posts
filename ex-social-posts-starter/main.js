@@ -69,13 +69,23 @@ const posts = [
 const myContainer = document.querySelector('#container');
 console.log(myContainer);
 posts.forEach((singlePost) => {
+    // const numberLike = addLike(singlePost.likes);
+    // console.log(numberLike)
     const templatePost = generatePost(singlePost);
     myContainer.innerHTML += templatePost;
+    
     });
 
-const likeButton = document.querySelectorAll('.js-like-button');
-likeButton.forEach((likeButtonDom) => {
+    // bottone like in ascolto
+const allLikeButton = document.querySelectorAll('.js-like-button');
+const allNumberLike = document.querySelectorAll('.likes__counter b')
+allLikeButton.forEach((likeButtonDom,index) => {
     likeButtonDom.addEventListener('click',function(){
+    //    console.log(this.dataset.postid)
+      const relatedButton = allLikeButton[index];
+      const relatedNumberLike = allNumberLike[index];
+      
+      relatedButton.classList.add('like-button--liked')
        
     });
 });  
@@ -84,6 +94,7 @@ likeButton.forEach((likeButtonDom) => {
     // funzione che genera postCard univoci 
     function generatePost(thisPost){
         const {id,content,media,author,likes,created} = thisPost ;
+       
        const teamPost = `
        <div class="post">
                 <div class="post__header">
@@ -128,4 +139,10 @@ likeButton.forEach((likeButtonDom) => {
             imgString = `<span class = "profile-pic-default">LF</span>`;
         }
         return imgString;
+     }
+
+     function addLike (number){
+        let numberLike = number ;
+        numberLike ++; 
+        return numberLike;
      }
