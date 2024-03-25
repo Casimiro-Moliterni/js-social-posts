@@ -64,6 +64,8 @@ const posts = [
     }
 ];
 
+const likedPost = [];
+
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 // stampa nel dom 
 const myContainer = document.querySelector('#container');
@@ -83,13 +85,19 @@ allLikeButton.forEach((likeButtonDom,index) => {
     likeButtonDom.addEventListener('click',function(){
     //    console.log(this.dataset.postid)
       const relatedButton = allLikeButton[index];
-      const relatedNumberLike = allNumberLike[index];
-      
-      relatedButton.classList.add('like-button--liked')
-       
+      let relatedNumberLike = allNumberLike[index];
+      relatedButton.classList.add('like-button--liked');
+      const thisLike = posts[index].likes;
+      let userMessage = relatedNumberLike.innerHTML = sumNumbers(thisLike,1);
+      let salved = arrayPush( index);
+      console.log('post n°: '+ salved);
+
+       likeButtonDom.addEventListener('click',function(){
+        relatedButton.classList.remove('like-button--liked');
+        relatedButton.classList.add('like-button--liked-red');
+       })
     });
 });  
-    
     
     // funzione che genera postCard univoci 
     function generatePost(thisPost){
@@ -140,9 +148,21 @@ allLikeButton.forEach((likeButtonDom,index) => {
         }
         return imgString;
      }
+// somma numeri 
+function sumNumbers(...numbers) {
+    let sum = 0;
+    numbers.forEach((singleNumber) => {
+        sum += singleNumber;
+    });
 
-     function addLike (number){
-        let numberLike = number ;
-        numberLike ++; 
-        return numberLike;
-     }
+    return sum;
+};
+
+
+
+
+// funzione che pusha nell'array 
+function arrayPush (index){
+  let arrayLikePost= likedPost.push(posts[index].id);
+  return arrayLikePost;
+};
