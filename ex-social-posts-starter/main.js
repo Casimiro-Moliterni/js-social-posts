@@ -65,15 +65,20 @@ const posts = [
 ];
 
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
-
+// stampa nel dom 
 const myContainer = document.querySelector('#container');
 console.log(myContainer);
 posts.forEach((singlePost) => {
     const templatePost = generatePost(singlePost);
     myContainer.innerHTML += templatePost;
     });
-    
-    
+
+const likeButton = document.querySelectorAll('.js-like-button');
+likeButton.forEach((likeButtonDom) => {
+    likeButtonDom.addEventListener('click',function(){
+       
+    });
+});  
     
     
     // funzione che genera postCard univoci 
@@ -94,18 +99,18 @@ posts.forEach((singlePost) => {
                 </div>
                 <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
                 <div class="post__image">
-                    <img src="https://unsplash.it/600/300?image=171" alt="">
+                    <img src="${media}" alt="">
                 </div>
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <a class="like-button  js-like-button" href="#" data-postid="${id}">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
                             </a>
                         </div>
                         <div class="likes__counter">
-                            Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                            Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
                         </div>
                     </div> 
                 </div>            
